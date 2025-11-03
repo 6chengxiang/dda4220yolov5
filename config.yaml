@@ -1,0 +1,22 @@
+# 个人配置
+
+## 项目设置
+author: "您的名字"
+email: "your.email@example.com"
+project_name: "我的 YOLOv5 项目"
+version: "1.0.0"
+
+## 训练配置
+default_epochs: 100
+default_batch_size: 16
+default_img_size: 640
+
+## 模型配置
+default_model: "yolov5s"
+confidence_threshold: 0.25
+iou_threshold: 0.45
+
+## 路径配置
+weights_dir: "weights/"
+data_dir: "data/"
+runs_dir: "runs/"
