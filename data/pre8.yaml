@@ -1,0 +1,13 @@
+# YOLOv5 数据集配置文件 - Pre8 Dataset
+# 用于目标检测/实例分割任务
+
+# 数据集路径（使用绝对路径避免路径问题）
+train: C:/Users/dell/Desktop/yolov5/data/pre8/pre8/images/train   # 训练图片目录
+val: C:/Users/dell/Desktop/yolov5/data/pre8/pre8/images/val       # 验证图片目录
+test: C:/Users/dell/Desktop/yolov5/data/pre8/pre8/images/test     # 测试图片目录
+
+# 类别数量
+nc: 1  # number of classes
+
+# 类别名称
+names: [hot dog]

@@ -247,7 +247,7 @@ def train(hyp, opt, device, callbacks):
 
     # Trainloader
     train_loader, dataset = create_dataloader(
-        train_path,
+        train_path, # 使用我们修正后的 train_path
         imgsz,
         batch_size // WORLD_SIZE,
         gs,
@@ -300,6 +300,17 @@ def train(hyp, opt, device, callbacks):
     # DDP mode
     if cuda and RANK != -1:
         model = smart_DDP(model)
+
+    # 强制修正数据集路径
+    LOGGER.info("<<<<< 强制路径修正 (再次应用) >>>>>")
+    for k in 'train', 'val', 'test':
+        if data_dict.get(k):
+            # 将 'images/train' 这样的相对路径和 'path' 结合成绝对路径
+            path = Path(data_dict['path']) / data_dict[k]
+            data_dict[k] = str(path)
+            LOGGER.info(f"  - {k}: {data_dict[k]}")
+    train_path, val_path = data_dict["train"], data_dict["val"]
+    LOGGER.info("<<<<< 路径修正结束 >>>>>")
 
     # Model attributes
     nl = de_parallel(model).model[-1].nl  # number of detection layers (to scale hyps)
